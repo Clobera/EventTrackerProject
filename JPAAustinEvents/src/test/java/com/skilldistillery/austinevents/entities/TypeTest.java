@@ -47,7 +47,7 @@ class TypeTest {
 	@Test
 	void test_Type_entity_mapping() {
 		assertNotNull(type);
-		assertEquals("Music", type.getName());
+		assertEquals("Live Music", type.getName());
 	}
 	
 	@Test

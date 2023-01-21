@@ -37,10 +37,11 @@ CREATE TABLE IF NOT EXISTS `event` (
   `name` VARCHAR(100) NOT NULL,
   `start_date` DATE NOT NULL,
   `end_date` DATE NOT NULL,
-  `address` VARCHAR(45) NOT NULL,
+  `address` VARCHAR(150) NOT NULL,
   `time` VARCHAR(45) NULL,
   `description` TEXT NULL,
   `link` VARCHAR(2048) NULL,
+  `event_picture` VARCHAR(2048) NULL,
   `type_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_event_type1_idx` (`type_id` ASC),
@@ -78,7 +79,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `picture` ;
 
 CREATE TABLE IF NOT EXISTS `picture` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL,
   `url` VARCHAR(2048) NOT NULL,
   `picture_description` VARCHAR(45) NULL,
   `event_id` INT NOT NULL,
@@ -107,9 +108,16 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `austineventsdb`;
-INSERT INTO `type` (`id`, `name`) VALUES (1, 'Music');
-INSERT INTO `type` (`id`, `name`) VALUES (2, 'Art');
-INSERT INTO `type` (`id`, `name`) VALUES (3, 'Sports');
+INSERT INTO `type` (`id`, `name`) VALUES (1, 'Live Music');
+INSERT INTO `type` (`id`, `name`) VALUES (2, 'Festivals');
+INSERT INTO `type` (`id`, `name`) VALUES (3, 'Film & Video');
+INSERT INTO `type` (`id`, `name`) VALUES (4, 'Visual Arts');
+INSERT INTO `type` (`id`, `name`) VALUES (5, 'Comedy & Improv');
+INSERT INTO `type` (`id`, `name`) VALUES (6, 'Museums & Exhibits');
+INSERT INTO `type` (`id`, `name`) VALUES (7, 'Performing Arts');
+INSERT INTO `type` (`id`, `name`) VALUES (8, 'Interactive/Media Arts');
+INSERT INTO `type` (`id`, `name`) VALUES (9, 'Food & Drink');
+INSERT INTO `type` (`id`, `name`) VALUES (10, 'Sports & Fitness');
 
 COMMIT;
 
@@ -119,7 +127,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `austineventsdb`;
-INSERT INTO `event` (`id`, `name`, `start_date`, `end_date`, `address`, `time`, `description`, `link`, `type_id`) VALUES (1, 'Test', '2023-01-01', '2023-01-01', 'EMOs', NULL, NULL, NULL, 1);
+INSERT INTO `event` (`id`, `name`, `start_date`, `end_date`, `address`, `time`, `description`, `link`, `event_picture`, `type_id`) VALUES (1, 'Buddy Guy', '2023-03-04', '2023-03-04', 'ACL Live 310 W Willie Nelson Blvd, Austin, TX', '5:30 PM', 'Buddy Guy plays 150 shows a year …and his take on the blues, expressed through his plaintive voice and virtuosic guitar, is still scorching.\" - Billboard \"searing… masterful…. Buddy Guy…shows no signs of decreasing productivity.\" - Rolling Stone \"While it\'s almost a given that Buddy wins when he releases something, next year it will be because it\'s truly well deserved. This is a superb album and it is well worth adding to any blues lover\'s collection.\" - Blues Blast Magazine Today, Multi-Grammy Award winning blues icon Buddy Guy celebrates his seventh #1 album THE BLUES DON\'T LIE, released via Silvertone/RCA Records. Along with it, he bids adieu to extensive touring, with the upcoming 2023 Damn Right Farewell Tour, kicking off February 17, 2023, in Rockford, IL. Local presales begin Wed Oct 19 at 10AM local time. Tickets go on sale this Friday, October 21, at 10AM local time.', 'https://tixel.com/music-tickets/2023/03/04/buddy-guy-damn-right-farewell', 'https://event-images.tixel.com/cdn-cgi/image/width=600,format=auto/media/images/d54aae78b605369d4f7ed0d052e7935d_1667283632_206_l.jpg', 1);
+INSERT INTO `event` (`id`, `name`, `start_date`, `end_date`, `address`, `time`, `description`, `link`, `event_picture`, `type_id`) VALUES (2, 'Jam & Toast', '2023-01-22', '2023-01-22', 'Pershing\n2415 E 5th St., Austin, TX', '12 PM', 'The blues, funk, soul and rock inspired SHADOW BAND hails from Austin, Texas with Robert Parker Jr. on guitar/vocals, Jennifer Foster on bass/vocals and Anthony Corsaro on drums. Robert began as a blues inspired self-taught guitarist from Southern California, gigging up and down the coast. Jennifer picked up the bass one year ago. She moonlights as an actress and vocal arranger with original albums, Broadway shows, films, commercials, and TV shows under her belt. Anthony started in bands, drumlines, churches; studied at University of North Texas and continues to push his creative boundaries in areas like engineering, producing live podcasts, mixing/recording and beyond. The trio met in the summer of 2021 at Mozart\'s Coffee in Austin and the rest is history.\n\nWith collective inspirations like The Meters, Bonnie Raitt, Jimi Hendrix, The Grateful Dead, and Stevie Ray Vaughan, this trio has played at hundreds of venues in and around Austin.', 'https://www.eventbrite.com/e/jam-toast-sunday-brunch-and-live-music-featuring-shadow-band-tickets-465217156037', 'https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F391887449%2F318286210865%2F1%2Foriginal.20221111-194210?h=2000&w=720&auto=format%2Ccompress&q=75&sharp=10&rect=541%2C0%2C1088%2C1080&s=1f5a4dbe0d7b8c4e4817b44b62a92deb', 1);
 
 COMMIT;
 

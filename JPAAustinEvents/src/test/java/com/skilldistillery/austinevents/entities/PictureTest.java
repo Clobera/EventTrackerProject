@@ -55,7 +55,7 @@ class PictureTest {
 	void test_Picture_to_Event_ManyToOne_mapping() {
 		assertNotNull(picture);
 		assertEquals("Test", picture.getEvent().getName());
-		assertEquals("Music", picture.getEvent().getType().getName());
+		assertEquals("Live Music", picture.getEvent().getType().getName());
 	}
 
 }

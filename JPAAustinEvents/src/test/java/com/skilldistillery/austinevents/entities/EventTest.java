@@ -58,7 +58,7 @@ class EventTest {
 	@Test
 	void test_Event_to_Type_ManyToOne_mapping() {
 		assertNotNull(event);
-		assertEquals("Music", event.getType().getName());
+		assertEquals("Live Music", event.getType().getName());
 	}
 
 }

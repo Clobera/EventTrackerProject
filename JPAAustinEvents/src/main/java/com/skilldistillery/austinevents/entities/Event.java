@@ -35,6 +35,9 @@ public class Event {
 
 	private String link;
 
+	@Column(name = "event_picture")
+	private String eventPicture;
+
 	@ManyToOne
 	@JoinColumn(name = "type_id")
 	private Type type;
@@ -44,7 +47,7 @@ public class Event {
 	}
 
 	public Event(int id, String name, LocalDate startDate, LocalDate endDate, String address, String time,
-			String description, String link, Type type) {
+			String description, String link, String eventPicture, Type type) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -54,6 +57,7 @@ public class Event {
 		this.time = time;
 		this.description = description;
 		this.link = link;
+		this.eventPicture = eventPicture;
 		this.type = type;
 	}
 
@@ -129,6 +133,14 @@ public class Event {
 		this.type = type;
 	}
 
+	public String getEventPicture() {
+		return eventPicture;
+	}
+
+	public void setEventPicture(String eventPicture) {
+		this.eventPicture = eventPicture;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -149,8 +161,8 @@ public class Event {
 	@Override
 	public String toString() {
 		return "Event [id=" + id + ", name=" + name + ", startDate=" + startDate + ", endDate=" + endDate + ", address="
-				+ address + ", time=" + time + ", description=" + description + ", link=" + link + ", type=" + type
-				+ "]";
+				+ address + ", time=" + time + ", description=" + description + ", link=" + link + ", eventPicture="
+				+ eventPicture + ", type=" + type + "]";
 	}
 
 }

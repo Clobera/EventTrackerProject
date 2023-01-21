@@ -55,7 +55,7 @@ class CommentTest {
 	void test_Comment_to_Event_ManyToOne_mapping() {
 		assertNotNull(comment);
 		assertEquals("Test", comment.getEvent().getName());
-		assertEquals("Music", comment.getEvent().getType().getName());
+		assertEquals("Live Music", comment.getEvent().getType().getName());
 	}
 
 }
