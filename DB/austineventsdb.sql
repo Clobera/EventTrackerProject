@@ -16,6 +16,18 @@ CREATE SCHEMA IF NOT EXISTS `austineventsdb` DEFAULT CHARACTER SET utf8 ;
 USE `austineventsdb` ;
 
 -- -----------------------------------------------------
+-- Table `type`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `type` ;
+
+CREATE TABLE IF NOT EXISTS `type` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `event`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `event` ;
@@ -23,24 +35,60 @@ DROP TABLE IF EXISTS `event` ;
 CREATE TABLE IF NOT EXISTS `event` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NOT NULL,
-  `date` VARCHAR(45) NULL,
-  `address` VARCHAR(45) NULL,
+  `start_date` DATE NOT NULL,
+  `end_date` DATE NOT NULL,
+  `address` VARCHAR(45) NOT NULL,
   `time` VARCHAR(45) NULL,
   `description` TEXT NULL,
   `link` VARCHAR(2048) NULL,
-  PRIMARY KEY (`id`))
+  `type_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_event_type1_idx` (`type_id` ASC),
+  CONSTRAINT `fk_event_type1`
+    FOREIGN KEY (`type_id`)
+    REFERENCES `type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `event_type`
+-- Table `comment`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `event_type` ;
+DROP TABLE IF EXISTS `comment` ;
 
-CREATE TABLE IF NOT EXISTS `event_type` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `type` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`))
+CREATE TABLE IF NOT EXISTS `comment` (
+  `id` INT NOT NULL,
+  `name` VARCHAR(45) NULL,
+  `content` TEXT NOT NULL,
+  `event_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_comment_event1_idx` (`event_id` ASC),
+  CONSTRAINT `fk_comment_event1`
+    FOREIGN KEY (`event_id`)
+    REFERENCES `event` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `picture`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `picture` ;
+
+CREATE TABLE IF NOT EXISTS `picture` (
+  `id` INT NOT NULL,
+  `url` VARCHAR(2048) NOT NULL,
+  `picture_description` VARCHAR(45) NULL,
+  `event_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_pictures_event1_idx` (`event_id` ASC),
+  CONSTRAINT `fk_pictures_event1`
+    FOREIGN KEY (`event_id`)
+    REFERENCES `event` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 SET SQL_MODE = '';
@@ -55,11 +103,23 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
+-- Data for table `type`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `austineventsdb`;
+INSERT INTO `type` (`id`, `name`) VALUES (1, 'Music');
+INSERT INTO `type` (`id`, `name`) VALUES (2, 'Art');
+INSERT INTO `type` (`id`, `name`) VALUES (3, 'Sports');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `event`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `austineventsdb`;
-INSERT INTO `event` (`id`, `name`, `date`, `address`, `time`, `description`, `link`) VALUES (1, 'Test', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `event` (`id`, `name`, `start_date`, `end_date`, `address`, `time`, `description`, `link`, `type_id`) VALUES (1, 'Test', '2023-01-01', '2023-01-01', '14307 hunters pass', NULL, NULL, NULL, 1);
 
 COMMIT;
 

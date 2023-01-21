@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -54,12 +55,22 @@ public class EventController {
 	}
 
 	@PutMapping(path = "events/{id}")
-	public Event createEvent(@PathVariable int id, @RequestBody Event updates, HttpServletResponse res) {
-		Event event = eventService.updateEvent(id, updates);
+	public Event updateEvent(@PathVariable int id, @RequestBody Event updates, HttpServletResponse res) {
+		Event event = new Event();
+		try {
+			if (updates == null) {
+				res.setStatus(404);
+			}
+			event = eventService.updateEvent(id, updates);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+		}
 		return event;
 	}
 
-	@PutMapping(path = "events/{id}")
+	@DeleteMapping(path = "events/{id}")
 	public void deleteEvent(@PathVariable int id, HttpServletResponse res){
 		try {
 			if (eventService.deleteEvent(id)) {
