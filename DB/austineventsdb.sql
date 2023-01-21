@@ -58,8 +58,8 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `comment` ;
 
 CREATE TABLE IF NOT EXISTS `comment` (
-  `id` INT NOT NULL,
-  `name` VARCHAR(45) NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
   `content` TEXT NOT NULL,
   `event_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -78,7 +78,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `picture` ;
 
 CREATE TABLE IF NOT EXISTS `picture` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `url` VARCHAR(2048) NOT NULL,
   `picture_description` VARCHAR(45) NULL,
   `event_id` INT NOT NULL,
@@ -119,7 +119,27 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `austineventsdb`;
-INSERT INTO `event` (`id`, `name`, `start_date`, `end_date`, `address`, `time`, `description`, `link`, `type_id`) VALUES (1, 'Test', '2023-01-01', '2023-01-01', '14307 hunters pass', NULL, NULL, NULL, 1);
+INSERT INTO `event` (`id`, `name`, `start_date`, `end_date`, `address`, `time`, `description`, `link`, `type_id`) VALUES (1, 'Test', '2023-01-01', '2023-01-01', 'EMOs', NULL, NULL, NULL, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `comment`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `austineventsdb`;
+INSERT INTO `comment` (`id`, `name`, `content`, `event_id`) VALUES (1, 'Carlos', 'this is a test comment', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `picture`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `austineventsdb`;
+INSERT INTO `picture` (`id`, `url`, `picture_description`, `event_id`) VALUES (1, 'https://media.istockphoto.com/id/825383494/photo/business-man-pushing-large-stone-up-to-hill-business-heavy-tasks-and-problems-concept.jpg?s=612x612&w=0&k=20&c=wtqvbQ6OIHitRVDPTtoT_1HKUAOgyqa7YzzTMXqGRaQ=', 'test picture description', 1);
 
 COMMIT;
 

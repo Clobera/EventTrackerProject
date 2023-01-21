@@ -5,7 +5,10 @@
 	
 			<provider>org.hibernate.jpa.HibernatePersistenceProvider
     	</provider>
+		<class>com.skilldistillery.austinevents.entities.Comment</class>
 		<class>com.skilldistillery.austinevents.entities.Event</class>
+		<class>com.skilldistillery.austinevents.entities.Picture</class>
+		<class>com.skilldistillery.austinevents.entities.Type</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.url"

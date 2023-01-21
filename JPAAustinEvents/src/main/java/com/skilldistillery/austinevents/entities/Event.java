@@ -44,7 +44,7 @@ public class Event {
 	}
 
 	public Event(int id, String name, LocalDate startDate, LocalDate endDate, String address, String time,
-			String description, String link) {
+			String description, String link, Type type) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -54,6 +54,7 @@ public class Event {
 		this.time = time;
 		this.description = description;
 		this.link = link;
+		this.type = type;
 	}
 
 	public int getId() {
@@ -120,6 +121,14 @@ public class Event {
 		this.link = link;
 	}
 
+	public Type getType() {
+		return type;
+	}
+
+	public void setType(Type type) {
+		this.type = type;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -140,7 +149,8 @@ public class Event {
 	@Override
 	public String toString() {
 		return "Event [id=" + id + ", name=" + name + ", startDate=" + startDate + ", endDate=" + endDate + ", address="
-				+ address + ", time=" + time + ", description=" + description + ", link=" + link + "]";
+				+ address + ", time=" + time + ", description=" + description + ", link=" + link + ", type=" + type
+				+ "]";
 	}
 
 }

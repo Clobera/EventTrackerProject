@@ -2,8 +2,7 @@ package com.skilldistillery.austinevents.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-import java.time.LocalDate;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,14 +14,13 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class EventTest {
-
+class TypeTest {
 
 	private static EntityManagerFactory emf;
 	
 	private EntityManager em;
 	
-	private Event event; 
+	private Type type; 
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -37,28 +35,25 @@ class EventTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		event = em.find(Event.class, 1);
+		type = em.find(Type.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		event = null;
+		type = null;
 	}
 
 	@Test
-	void test_Category_entity_mapping() {
-		assertNotNull(event);
-		assertEquals("Test", event.getName());
-		assertEquals("EMOs", event.getAddress());
-		assertEquals(LocalDate.of(2023, 01, 01), event.getStartDate());
-		assertEquals(LocalDate.of(2023, 01, 01), event.getEndDate());
+	void test_Type_entity_mapping() {
+		assertNotNull(type);
+		assertEquals("Music", type.getName());
 	}
 	
 	@Test
-	void test_Event_to_Type_ManyToOne_mapping() {
-		assertNotNull(event);
-		assertEquals("Music", event.getType().getName());
+	void test_Type_to_Event_OneToMany_mapping() {
+		assertNotNull(type);
+		assertTrue(type.getEvents().size() > 0);
 	}
 
 }
