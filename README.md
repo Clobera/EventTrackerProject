@@ -29,3 +29,4 @@ This weekends project we were tasked with making an event tracker of our choosin
 ## Database
 ![alt text](DB/tables.png)
 ## Lessons Learned
+This week we learned to create a RESTful application with CRUD functionality. We also learned how to create Service classes and Repository methods to personalize the tools we already get with Spring JPA.
