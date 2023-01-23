@@ -20,7 +20,12 @@ This weekends project we were tasked with making an event tracker of our choosin
 | GET       | `/api/types`    | Get all 'Types' |
 
 ## Technologies Used
-
+* Java
+* Spring JPA
+* Spring Boot
+* Git
+* Gradle
+* MySQL
 ## Database
-
+![alt text](DB/tables.png)
 ## Lessons Learned
