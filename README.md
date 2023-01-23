@@ -6,18 +6,18 @@ This weekends project we were tasked with making an event tracker of our choosin
 ## Route Mappings
 | HTTP Verb | URI                  | Request Body |
 |-----------|----------------------|--------------|
-| GET       | `/api/events`    |              |
-| GET       | `/api/events/{id}` |              |
-| POST      | `/api/events`    | JSON of a new `Event` |
-| PUT       | `/api/events/{id}` | JSON of a new version of `TacoStand` 17 |
-| DELETE    | `/api/events/{id}` |              |
-| GET       | `/api/events/{id}/comments`    |              |
-| POST       | `/api/events/{id}/comments` |              |
-| DELETE      | `/api/events/{id}/comments/{cid}`    | JSON of a new `Event` |
-| GET       | `/api/events/{id}/pictures`    |              |
-| POST       | `/api/events/{id}/pictures` |              |
-| DELETE      | `/api/events/{id}/pictures/{pid}`    | JSON of a new `Event` |
-| GET       | `/api/types`    |              |
+| GET       | `/api/events`    | Get all 'Events' |
+| GET       | `/api/events/{id}` | Get 'Event' by id |
+| POST      | `/api/events`    | Create new 'Event' |
+| PUT       | `/api/events/{id}` | Update 'Event' |
+| DELETE    | `/api/events/{id}` | Delete 'Event' by id |
+| GET       | `/api/events/{id}/comments`    | Get all 'Comments' |
+| POST       | `/api/events/{id}/comments` | Create new 'Comment' |
+| DELETE      | `/api/events/{id}/comments/{cid}`    | Delete 'Comment' by id |
+| GET       | `/api/events/{id}/pictures`    | Get all 'Pictures' |
+| POST       | `/api/events/{id}/pictures` | Create new 'Picture' |
+| DELETE      | `/api/events/{id}/pictures/{pid}`    | Delete 'Picture' by id |
+| GET       | `/api/types`    | Get all 'Types' |
 
 ## Technologies Used
 
