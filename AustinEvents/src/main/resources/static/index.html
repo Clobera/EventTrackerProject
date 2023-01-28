@@ -7,5 +7,102 @@
 </head>
 <body>
 	<h1>Event Tracker</h1>
+	<div id="eventList">
+
+		<table>
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Name</th>
+				</tr>
+			</thead>
+			<tbody id="tableBody">
+
+			</tbody>
+		</table>
+
+	</div>
+	<div id="eventDetails">
+		<h1 id="eventName"></h1>
+		<h3 id="eventDate"></h3>
+		<blockquote id="eventDescription"></blockquote>
+
+
+
+	</div>
+	<div id="eventForm">
+		<div class="input-group mb-3">
+			<form name="createEventForm">
+
+				<span class="input-group-text" id="basic-addon1">Name of Event: </span> <input
+					type="text" class="form-control"
+					placeholder="ex. Austin City Limits, SXSW, ect..." name="name"
+					aria-describedby="basic-addon1">
+					<br>
+
+					<span class="input-group-text" id="basic-addon1">Start Date: </span>
+					<input type="date" id="start" name="startDate" value="2018-07-22"
+						min="2015-01-01" max="2030-12-31">
+					<br>
+
+					<span class="input-group-text" id="basic-addon1">End Date: </span> <input
+						type="date" id="end" name="endDate" value="2018-07-22"
+						min="2015-01-01" max="2030-12-31">
+					<br>
+
+					<span class="input-group-text" id="basic-addon1">Address: </span> <input
+						type="text" class="form-control" placeholder="12345 austin dr."
+						name="address" aria-describedby="basic-addon1">
+
+					<br>
+					<span class="input-group-text" id="basic-addon1">Time: </span> <input
+						type="text" class="form-control" placeholder="5 PM" name="time"
+						aria-describedby="basic-addon1">
+					<br>
+
+					<span class="input-group-text" id="basic-addon1">Description: </span>
+					<input type="text" class="form-control"
+						placeholder="a music festival with lots of bands..."
+						name="description" aria-describedby="basic-addon1">
+					<br>
+
+					<span class="input-group-text" id="basic-addon1">Link to
+						Event: </span> <input type="text" class="form-control"
+						placeholder="https://..." name="link"
+						aria-describedby="basic-addon1">
+
+					<br>
+					<span class="input-group-text" id="basic-addon1">Picture of
+						Event: </span> <input type="text" class="form-control"
+						placeholder="https://..." name="eventPicture"
+						aria-describedby="basic-addon1">
+					<br>
+					<span class="input-group-text" id="basic-addon1">Type of
+						Event: </span> <select id="cars" name="type">
+						<option value="0">Please pick what type of event</option> 
+						<option value="1">Live Music</option> 
+						<option value="2">Festivals</option> 
+						<option value="3">Film & Video</option> 
+						<option value="4">Visual Arts</option> 
+						<option value="5">Comedy & Improv</option> 
+						<option value="6">Museums & Exhibits</option> 
+						<option value="7">Performing Arts</option> 
+						<option value="8">Interactive/Media Arts</option> 
+						<option value="9">Food & Drink</option> 
+						<option value="10">Sports & Fitness</option> 
+					</select>
+					<br>
+
+
+
+
+
+				<button class="btn btn-outline-secondary" id="createEventBtn"
+					name="createEventBtn" type="button">Submit</button>
+
+			</form>
+		</div>
+	</div>
+	<div id="editForm"></div>
 </body>
 </html>
