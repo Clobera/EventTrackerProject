@@ -58,20 +58,51 @@ function displayEvents(eventList) {
 		let event = eventList[i];
 		let trow = document.createElement('tr');
 		tbody.appendChild(trow);
+		
 		let td = document.createElement('td');
 		td.textContent = event.startDate;
 		trow.appendChild(td);
+		
 		td = document.createElement('td');
 		td.textContent = event.name;
 		trow.appendChild(td);
+		
 		let button = document.createElement('button');
 		button.textContent = 'view';
 		button.id = i;
-		button.addEventListener('click', getEvent)
+		button.addEventListener('click', getEvent);
+		trow.appendChild(button);
+		
+		button = document.createElement('button');
+		button.textContent = 'delete';
+		button.id = i;
+		button.addEventListener('click', deleteEvent);
+		trow.appendChild(button);
+		
+		button = document.createElement('button');
+		button.textContent = 'update';
+		button.id = i;
+		button.addEventListener('click', updateEventForm);
 		trow.appendChild(button);
 
 	}
 
+}
+
+function updateEventForm(e){
+	let header = document.getElementById('updateEventHead');
+	header.textContent = 'Update Event';
+	let updateForm = document.getElementById('updateForm');
+	
+	let form = document.createElement('form');
+	updateForm.appendChild(form);
+	
+	let span = document.createElement('span');
+	span.textContent = 'Name';
+	form.appendChild(span);
+	let input = document.createElement('input');
+	form.appendChild(input);
+	
 }
 
 function getEvent(e) {
@@ -90,6 +121,7 @@ function getEvent(e) {
 	dispEventDesc.textContent = event.description;
 	//let dispEventDesc = document.getElementById('eventDescription');
 	//dispEventDesc.textContent = event.description;
+		
 
 
 }
@@ -124,6 +156,56 @@ function createEvent(event) {
 
 	xhr.setRequestHeader("Content-type", "application/json"); // Specify JSON request body
 	xhr.send(JSON.stringify(event));
+
+}
+
+function updateEvent(e) {
+	let event = eventsList[e.target.id];
+	let xhr = new XMLHttpRequest();
+	xhr.open('POST', 'api/events/'+ event.id , true);
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+
+			if (xhr.status === 200 ) {
+				let event = JSON.parse(xhr.responseText);
+				loadEvents();
+				displayError('Event Updated!');
+			}
+			else {
+				// * On failure, or if no response text was received, put "Film not found" 
+				//   in the filmData div.
+				displayError("Error updating event: " + xhr.status);
+			}
+		}
+	}
+
+	xhr.setRequestHeader("Content-type", "application/json"); // Specify JSON request body
+	xhr.send(JSON.stringify(event));
+
+}
+
+function deleteEvent(e) {
+	let event = eventsList[e.target.id];
+	let xhr = new XMLHttpRequest();
+	console.log(event.id);
+	xhr.open('DELETE', 'api/events/' + event.id , true);
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+
+			if (xhr.status === 204) {
+				loadEvents();
+				displayError('Event Deleted');
+			}
+			else {
+				// * On failure, or if no response text was received, put "Film not found" 
+				//   in the filmData div.
+				displayError("Error deleting event: " + xhr.status);
+			}
+		}
+	}
+
+	//xhr.setRequestHeader("Content-type", "application/json"); // Specify JSON request body
+	xhr.send();
 
 }
 
