@@ -241,7 +241,7 @@ function getEvent(e) {
 	let event = eventsList[e.target.id];
 
 	let dispEventName = document.createElement('h1');
-	dispEventName.textContent = event.name;
+	dispEventName.textContent = event.name + " at " + event.time;
 	div.appendChild(dispEventName);
 
 	let dispEventDate = document.createElement('h3');
@@ -253,6 +253,14 @@ function getEvent(e) {
 	}
 	dispEventDate.textContent = event.startDate + endDate;
 	div.appendChild(dispEventDate);
+
+	let dispPicture = document.createElement('img');
+	dispPicture.src = event.eventPicture;
+	div.appendChild(dispPicture);
+	
+	let dispAddress = document.createElement('h5');
+	dispAddress.textContent = "At " + event.address;
+	div.appendChild(dispAddress);
 
 	let dispEventDesc = document.createElement('blockquote');
 	dispEventDesc.textContent = event.description;
