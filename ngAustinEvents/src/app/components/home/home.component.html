@@ -1,0 +1,70 @@
+<h1>AUSTIN EVENTS</h1>
+
+<div *ngIf="!selected" i>
+  <table class="table table-hover">
+    <thead>
+      <th>DATE</th>
+      <th>EVENT NAME</th>
+    </thead>
+    <tbody class="table-group-divider">
+      <tr *ngFor="let event of events">
+        <td (click)="displayEvent(event)">{{ event.startDate }}</td>
+        <td>{{event.name}}</td>
+        <td><button class="btn btn-outline-danger" (click)="destroy(event.id)">X</button></td>
+
+      </tr>
+    </tbody>
+  </table>
+<br>
+  <form >
+    <input type="text" placeholder="Enter an Event Name" class="form-control" name="newEvent.name" [(ngModel)]="newEvent.name" >
+    <input type="date" class="form-control" name="newEvent.startDate" [(ngModel)]="newEvent.startDate" >
+    <input type="date" class="form-control" name="newEvent.endDate" [(ngModel)]="newEvent.endDate" >
+    <input type="text" placeholder="Enter an Event Address" class="form-control" name="newEvent.address" [(ngModel)]="newEvent.address" >
+    <input type="time"  class="form-control" name="newEvent.time" [(ngModel)]="newEvent.time" >
+    <input type="text" placeholder="Enter a description about the event" class="form-control" name="newEvent.description" [(ngModel)]="newEvent.description" >
+    <input type="text" placeholder="Enter the URL to event website" class="form-control" name="newEvent.link" [(ngModel)]="newEvent.link" >
+    <input type="text" placeholder="Enter URL of Event Picture" class="form-control" name="newEvent.eventPicture" [(ngModel)]="newEvent.eventPicture" >
+    <select name="type" class="form-control">
+      <option value="0">Please pick what type of event</option>
+      <option value="1">Live Music</option>
+      <option value="2">Festivals</option>
+      <option value="3">Film & Video</option>
+      <option value="4">Visual Arts</option>
+      <option value="5">Comedy & Improv</option>
+      <option value="6">Museums & Exhibits</option>
+      <option value="7">Performing Arts</option>
+      <option value="8">Interactive/Media Arts</option>
+      <option value="9">Food & Drink</option>
+      <option value="10">Sports & Fitness</option>
+    </select>
+    <br>
+    <button class="btn btn-primary" (click)="addEvent(newEvent)">Add Todo</button>
+  </form>
+</div>
+
+<div *ngIf="selected && !editEvent">
+  <p>{{ selected.id }}</p>
+  <p>{{ selected.name }}</p>
+  <p>{{ selected.description}}</p>
+  <!-- <p>{{ selected.description }}</p> -->
+  <button class="btn btn-outline-secondary" (click)="displayTable()">back</button>
+  <button class="btn btn-outline-warning" (click)="setEditEvent()">edit</button>
+
+</div>
+
+<div *ngIf="editEvent">
+  <input type="text" placeholder="Enter an Event Name" class="form-control" name="editEvent.name" [(ngModel)]="editEvent.name" >
+  <input type="date" class="form-control" name="editEvent.startDate" [(ngModel)]="editEvent.startDate" >
+  <input type="date" class="form-control" name="editEvent.endDate" [(ngModel)]="editEvent.endDate" >
+  <input type="text" placeholder="Enter an Event Address" class="form-control" name="editEvent.address" [(ngModel)]="editEvent.address" >
+  <input type="time"  class="form-control" name="editEvent.time" [(ngModel)]="editEvent.time" >
+  <input type="text" placeholder="Enter a description about the event" class="form-control" name="editEvent.description" [(ngModel)]="editEvent.description" >
+  <input type="text" placeholder="Enter the URL to event website" class="form-control" name="editEvent.link" [(ngModel)]="editEvent.link" >
+  <input type="text" placeholder="Enter URL of Event Picture" class="form-control" name="editEvent.eventPicture" [(ngModel)]="editEvent.eventPicture" >
+  <button class="btn btn-outline-success" (click)="updateTodo(editEvent.id, editEvent)">Save</button>
+
+  <button class="btn btn-outline-secondary" (click)="editEvent = null">Cancel</button>
+</div>
+
+
