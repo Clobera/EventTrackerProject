@@ -27,13 +27,15 @@ A list of all of the events on our data system is displayed on the home page, al
 ## Technologies Used
 * Java
 * JavaScript
+* TypeScript
+* Angular
+* HTML
+* CSS
 * Spring JPA
 * Spring Boot
 * Git
 * Gradle
 * MySQL
-*Angular
-*TypeScript
 
 ## Database
 ![alt text](DB/tables.png)
