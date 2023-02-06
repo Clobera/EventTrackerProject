@@ -8,7 +8,7 @@
     <tbody class="table-group-divider">
       <tr *ngFor="let event of events">
         <td (click)="displayEvent(event)">{{ event.startDate }}</td>
-        <td>{{event.name}}</td>
+        <td (click)="displayEvent(event)">{{event.name}}</td>
         <td><button class="btn btn-outline-danger" (click)="destroy(event.id)">X</button></td>
 
       </tr>
