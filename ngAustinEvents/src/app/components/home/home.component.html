@@ -1,6 +1,5 @@
-<h1>AUSTIN EVENTS</h1>
-
 <div *ngIf="!selected" i>
+  <h1>AUSTIN EVENTS</h1>
   <table class="table table-hover">
     <thead>
       <th>DATE</th>
@@ -16,15 +15,18 @@
     </tbody>
   </table>
 <br>
+
+<div>
+  <h3>Create Event!</h3>
   <form >
-    <input type="text" placeholder="Enter an Event Name" class="form-control" name="newEvent.name" [(ngModel)]="newEvent.name" >
-    <input type="date" class="form-control" name="newEvent.startDate" [(ngModel)]="newEvent.startDate" >
-    <input type="date" class="form-control" name="newEvent.endDate" [(ngModel)]="newEvent.endDate" >
-    <input type="text" placeholder="Enter an Event Address" class="form-control" name="newEvent.address" [(ngModel)]="newEvent.address" >
-    <input type="time"  class="form-control" name="newEvent.time" [(ngModel)]="newEvent.time" >
-    <input type="text" placeholder="Enter a description about the event" class="form-control" name="newEvent.description" [(ngModel)]="newEvent.description" >
-    <input type="text" placeholder="Enter the URL to event website" class="form-control" name="newEvent.link" [(ngModel)]="newEvent.link" >
-    <input type="text" placeholder="Enter URL of Event Picture" class="form-control" name="newEvent.eventPicture" [(ngModel)]="newEvent.eventPicture" >
+    <input type="text" placeholder="Enter an Event Name" class="form-control" name="newEvent.name" [(ngModel)]="newEvent.name" required>
+    <input type="date" class="form-control" name="newEvent.startDate" [(ngModel)]="newEvent.startDate" required>
+    <input type="date" class="form-control" name="newEvent.endDate" [(ngModel)]="newEvent.endDate" required>
+    <input type="text" placeholder="Enter an Event Address" class="form-control" name="newEvent.address" [(ngModel)]="newEvent.address"required >
+    <input type="time"  class="form-control" name="newEvent.time" [(ngModel)]="newEvent.time" required>
+    <input type="text" placeholder="Enter a description about the event" class="form-control" name="newEvent.description" [(ngModel)]="newEvent.description" required>
+    <input type="text" placeholder="Enter the URL to event website" class="form-control" name="newEvent.link" [(ngModel)]="newEvent.link" required>
+    <input type="text" placeholder="Enter URL of Event Picture" class="form-control" name="newEvent.eventPicture" [(ngModel)]="newEvent.eventPicture" required>
     <select name="type" class="form-control">
       <option value="0">Please pick what type of event</option>
       <option value="1">Live Music</option>
@@ -39,21 +41,31 @@
       <option value="10">Sports & Fitness</option>
     </select>
     <br>
-    <button class="btn btn-primary" (click)="addEvent(newEvent)">Add Todo</button>
+    <button class="btn btn-primary" (click)="addEvent(newEvent)">CREATE EVENT</button>
   </form>
+
+</div>
+
 </div>
 
 <div *ngIf="selected && !editEvent">
-  <p>{{ selected.id }}</p>
-  <p>{{ selected.name }}</p>
-  <p>{{ selected.description}}</p>
-  <!-- <p>{{ selected.description }}</p> -->
+  <h1>{{ selected.name }} NO.{{ selected.id }}</h1>
+  <img [src]="selected.eventPicture" alt="">
+  <h3>{{selected.address}} @ {{selected.time}}</h3>
+  <h3>{{selected.startDate}} - {{selected.endDate}} @ {{selected.time}}</h3>
+  <br>
+  <blockquote>{{ selected.description }}</blockquote>
+  <p>FOR MORE DETAILS VISIT THEIR WEBSITE <a href="{{ selected.link }}" target=”_blank”>HERE</a>.</p>
   <button class="btn btn-outline-secondary" (click)="displayTable()">back</button>
   <button class="btn btn-outline-warning" (click)="setEditEvent()">edit</button>
 
 </div>
 
 <div *ngIf="editEvent">
+  <!-- <br>
+  <br>
+  <br> -->
+  <h1>UPDATE EVENT!</h1>
   <input type="text" placeholder="Enter an Event Name" class="form-control" name="editEvent.name" [(ngModel)]="editEvent.name" >
   <input type="date" class="form-control" name="editEvent.startDate" [(ngModel)]="editEvent.startDate" >
   <input type="date" class="form-control" name="editEvent.endDate" [(ngModel)]="editEvent.endDate" >
@@ -66,5 +78,11 @@
 
   <button class="btn btn-outline-secondary" (click)="editEvent = null">Cancel</button>
 </div>
+
+<br>
+<br>
+<br>
+<br>
+
 
 
