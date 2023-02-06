@@ -4,7 +4,13 @@
 This weekends project we were tasked with making an event tracker of our choosing. I chose to make a application to track local arts/musical events in Austin Texas. The user can see events and their information, create/update/delete an event.
 
 ## HOW TO USE
-A list of all of the events on our data system is displayed on the home page, along with a form to create an Event. When you submit the Create Event form it adds the event to the list above dynamically(Creating an event requires all form fields to be filled out). To view an event's details, you click on the either the event date or name.
+A list of all of the events on our data system is displayed on the home page, along with a form to create an Event.
+
+When you submit the Create Event form it adds the event to the list above dynamically(Creating an event requires all form fields to be filled out). To view an event's details, you click on the either the event date or name. 
+
+The display page gives the user the option to go back to the home page or update the events details. When the user clicks on the update they will see a form similar to the create form. Once the user has updated the desired field they are redirected to the event details page.
+
+To delete an event there is a red button with an "X" on the right of the event name.
 
 
 
