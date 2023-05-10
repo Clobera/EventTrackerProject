@@ -1,5 +1,22 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" (click)="selected = null" (click)="showForm = false" ><h1>AUSTIN EVENTS</h1></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" (click)="showForm = true">Create Event</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
 <div *ngIf="!selected" i>
-  <h1>AUSTIN EVENTS</h1>
+  <img src="../../../assets/images/austin_mural.jpeg" alt="">
+
   <table class="table table-hover">
     <thead>
       <th>DATE</th>
@@ -16,7 +33,7 @@
   </table>
 <br>
 
-<div>
+<div *ngIf="showForm">
   <h3>Create Event!</h3>
   <form >
     <input type="text" placeholder="Enter an Event Name" class="form-control" name="newEvent.name" [(ngModel)]="newEvent.name" required>
@@ -49,6 +66,7 @@
 </div>
 
 <div *ngIf="selected && !editEvent">
+  <button class="btn btn-outline-secondary" (click)="displayTable()">back</button>
   <h1>{{ selected.name }} NO.{{ selected.id }}</h1>
   <img [src]="selected.eventPicture" alt="">
   <h3>{{selected.address}} @ {{selected.time}}</h3>
@@ -56,7 +74,6 @@
   <br>
   <blockquote>{{ selected.description }}</blockquote>
   <p>FOR MORE DETAILS VISIT THEIR WEBSITE <a href="{{ selected.link }}" target=”_blank”>HERE</a>.</p>
-  <button class="btn btn-outline-secondary" (click)="displayTable()">back</button>
   <button class="btn btn-outline-warning" (click)="setEditEvent()">edit</button>
 
 </div>
@@ -83,6 +100,8 @@
 <br>
 <br>
 <br>
+
+<footer>see my original HTML/JavaScript frontend <a href="indexStatic.html">here</a>.</footer>
 
 
 

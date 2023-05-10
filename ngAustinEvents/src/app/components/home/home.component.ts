@@ -17,6 +17,8 @@ export class HomeComponent {
 
   editEvent: null | Event = null;
 
+  showForm: boolean = false;
+
 
   constructor(private eventService: EventService) {}
 
